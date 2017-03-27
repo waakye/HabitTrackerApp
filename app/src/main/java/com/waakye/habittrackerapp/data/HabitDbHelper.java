@@ -30,11 +30,42 @@ public class HabitDbHelper extends SQLiteOpenHelper {
                 + HabitContract.HabitEntry.COLUMN_HABIT_SOCIAL + " INTEGER);";
 
         db.execSQL(SQL_CREATE_ENTRIES);
+    }
 
+    /**
+     * A method that reads the database
+     * @return Cursor
+     */
+    public Cursor readData() {
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                HabitContract.HabitEntry._ID,
+                HabitContract.HabitEntry.COLUMN_HABIT_NAME,
+                HabitContract.HabitEntry.COLUMN_HABIT_LOCATION,
+                HabitContract.HabitEntry.COLUMN_HABIT_FREQUENCY,
+                HabitContract.HabitEntry.COLUMN_HABIT_FEE
+        };
+
+        Cursor cursor = db.query(
+                HabitContract.HabitEntry.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        return cursor;
     }
 
 
     // TODO: Create a insert data method
+    public void insertData() {
+
+
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

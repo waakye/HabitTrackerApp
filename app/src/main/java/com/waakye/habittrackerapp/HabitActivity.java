@@ -30,6 +30,8 @@ public class HabitActivity extends AppCompatActivity {
 
     private Cursor mCursor;
 
+    HabitDbHelper mDbHelper = new HabitDbHelper(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +53,7 @@ public class HabitActivity extends AppCompatActivity {
     }
 
     private void displayHabits() {
-        readData();
-        Cursor abc = readData();
+        Cursor abc = mDbHelper.readData();
         displayData(abc);
     }
 
@@ -64,35 +65,6 @@ public class HabitActivity extends AppCompatActivity {
         return true;
     }
 
-    // TODO: Create a read method using "Saving Data in SQL Databases" as a guide
-    public Cursor readData() {
-        // To access our database, we instantiate our subclass of SQLiteOpenHelper
-        // and pass the context, which is the current activity.
-        HabitDbHelper mDbHelper = new HabitDbHelper(this);
-
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-
-        String[] projection = {
-                HabitContract.HabitEntry._ID,
-                HabitContract.HabitEntry.COLUMN_HABIT_NAME,
-                HabitContract.HabitEntry.COLUMN_HABIT_LOCATION,
-                HabitContract.HabitEntry.COLUMN_HABIT_FREQUENCY,
-                HabitContract.HabitEntry.COLUMN_HABIT_FEE
-        };
-
-        Cursor cursor = db.query(
-                HabitContract.HabitEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null);
-
-        return cursor;
-    }
 
 
     /**
