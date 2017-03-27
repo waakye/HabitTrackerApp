@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">HabitTrackerApp</string>
+
+    <!-- Label for editor menu option to save habit and leave editor [CHAR LIMIT=20] -->
+    <string name="action_save">Save</string>
+
+    <string name="action_display">Display Habits</string>
+
+    <!-- Label for editor overflow menu option that deletes the current habit [CHAR LIMIT=20] -->
+    <string name="action_delete">Delete</string>
+
+    <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="category_overview">Overview</string>
+
+    <!-- Label for cost information in the editor [CHAR LIMIT=30] -->
+    <string name="category_cost">Cost</string>
+
+    <string name="category_frequency">Frequency</string>
+
+    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_habit_name">Name</string>
+
+    <!-- Text hint for breed field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_habit_breed">Breed</string>
+
+    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_habit_weight">Weight</string>
+
+    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_habit_location">Location</string>
+
+    <string name="hint_habit_fee">Fee for Habit</string>
+
+    <string name="hint_habit_frequency">Times per week</string>
+
+    <!-- Units for fee in dollars of the habit [CHAR LIMIT=5] -->
+    <string name="unit_habit_fee">(in dollars)</string>
+
+    <string name="unit_habit_frequency">per week</string>
+
+    <string name="test">Test</string>
+
+</resources>
