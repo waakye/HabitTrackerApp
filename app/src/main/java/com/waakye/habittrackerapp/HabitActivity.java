@@ -1,8 +1,6 @@
 package com.waakye.habittrackerapp;
 
-import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -65,8 +63,6 @@ public class HabitActivity extends AppCompatActivity {
         return true;
     }
 
-
-
     /**
      * Display information in the onscreen TextView about the state of
      * the habits database.
@@ -126,26 +122,28 @@ public class HabitActivity extends AppCompatActivity {
         String habitFrequencyString = mHabitFrequencyEditText.getText().toString().trim();
         String habitFeeString = mHabitFeeEditText.getText().toString().trim();
 
-        // Create an instance of the HabitDbHelper object
-        HabitDbHelper mDbHelper1 = new HabitDbHelper(this);
+        String errorMessage =  mDbHelper.insertData(habitNameString, habitLocationString,
+                habitFrequencyString, habitFeeString);
 
-        // Get the data repository of the SQLiteDatabasein the write mode
-        SQLiteDatabase db = mDbHelper1.getWritableDatabase();
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
 
-        ContentValues values = new ContentValues();
-
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT_NAME, habitNameString);
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT_LOCATION, habitLocationString);
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT_FREQUENCY, habitFrequencyString);
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT_FEE, habitFeeString);
-
-        long newRowId = db.insert(HabitContract.HabitEntry.TABLE_NAME, null, values);
-
-        if(newRowId == -1) {
-            Toast.makeText(this, "Error with saving habit", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Habit saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
-        }
+//        // Get the data repository of the SQLiteDatabasein the write mode
+//        SQLiteDatabase db = mDbHelper1.getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//
+//        values.put(HabitContract.HabitEntry.COLUMN_HABIT_NAME, habitNameString);
+//        values.put(HabitContract.HabitEntry.COLUMN_HABIT_LOCATION, habitLocationString);
+//        values.put(HabitContract.HabitEntry.COLUMN_HABIT_FREQUENCY, habitFrequencyString);
+//        values.put(HabitContract.HabitEntry.COLUMN_HABIT_FEE, habitFeeString);
+//
+//        long newRowId = db.insert(HabitContract.HabitEntry.TABLE_NAME, null, values);
+//
+//        if(newRowId == -1) {
+//            Toast.makeText(this, "Error with saving habit", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, "Habit saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+//        }
     }
 
 
@@ -157,7 +155,6 @@ public class HabitActivity extends AppCompatActivity {
             case R.id.action_save:
                 // Save habit to database
                 insertHabit();
-                // Exit activity
                 return true;
             case R.id.action_display:
                 // Display search results
